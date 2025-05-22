@@ -83,6 +83,9 @@ public error$ = this.notificationService.error$;
 
 getEmployeesByName(searchName: string) {
      // Fetch employees by name.
+     // The employeeApiService method returns an Observable<Employee[]>.
+     // The employees$ stream will be updated with the data.
+     // The error$ stream will be updated with the error if any.
      this.notificationService.subscribe
      (
         this.employeeApiService.getEmployeesByName(searchName)
