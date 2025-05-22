@@ -100,10 +100,22 @@ getEmployeesByName(searchName: string) {
    <div style="color:red">{{(error$ | async)?.message}}</div>
 }
 
-@for (employee of employees$ | async; track employee.id) {
-    <tr>
-        <td>{{ employee.name }}</td>
-        <td>{{ employee.totalLeaveDays }}</td>
-    </tr>
-}
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Total Leave Days</th>
+        </tr>
+    </thead>
+    <tbody>
+        @* Loop through the employees$ stream *@
+        @* Use trackBy to optimize rendering *@
+        @for (employee of employees$ | async; track employee.id) {
+            <tr>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.totalLeaveDays }}</td>
+            </tr>
+        }
+    </tbody>
+</table>
 ```
