@@ -1,5 +1,7 @@
 # Subscribe Notify pattern
 
+Appreciate a star on the repository if you find this useful.
+
 ## Subscribe Notify pattern
 
 In Angular apps, we need to subscribe to Observables.
