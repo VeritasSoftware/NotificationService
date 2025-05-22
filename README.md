@@ -92,7 +92,7 @@ getEmployeesByName(searchName: string) {
 
 ```html
 @if (error$ | async) {
-   <span style="color:red">(error$ | async)?.message</nz-alert>
+   <div style="color:red">{{(error$ | async)?.message}}</div>
 }
 
 @for (employee of employees$ | async; track employee.id) {
