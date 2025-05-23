@@ -14,6 +14,8 @@ A data$ stream & an error$ stream.
 
 So, in your component you only deal with streams.
 
+The pattern greatly simplifies dealing with Observables (HttpClient) in your component.
+
 ## Notification Service
 
 ![NotificationService](NotificationService.png)
