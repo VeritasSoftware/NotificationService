@@ -108,8 +108,7 @@ getEmployeesByName(searchName: string) {
         </tr>
     </thead>
     <tbody>
-        <!-- Loop through the employees$ stream
-         Use trackBy to optimize rendering -->
+        <!-- Loop through the employees$ stream -->
         @for (employee of employees$ | async; track employee.id) {
             <tr>
                 <td>{{ employee.name }}</td>
