@@ -46,10 +46,10 @@ export class NotificationService<T> {
         });
     }
 
-    public subscribe(
+    public subscribeMap(
         observer: Observable<any>,
         mapDataFrom?: (data: any) => T,
-        mapErrorFrom?: (error: any) => any,
+        mapErrorFrom?: (error: any) => any
     ) {
         this.resetError();
         observer.subscribe({
@@ -83,6 +83,7 @@ export class NotificationService<T> {
         this.error$.next(null);
     }
 }
+
 ```
 
 ## Usage of NotificationService
