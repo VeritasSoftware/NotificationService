@@ -32,15 +32,27 @@ export class NotificationService<T> {
     public data$: BehaviorSubject<T> = new BehaviorSubject<T>(<T>{});
     public error$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-    public subscribe(observer: Observable<T>) {
+    public subscribe(
+        observer: Observable<any>,
+        mapDataFrom?: (data: any) => T,
+        mapErrorFrom?: (error: any) => any,
+    ) {
         this.resetError();
         observer.subscribe({
             next: (data) => {
                 console.log('Data loaded successfully', data);
+                if (mapDataFrom) {
+                    var d = mapDataFrom(data);
+                    this.data$.next(d);
+                    return;
+                }
                 this.data$.next(data);
             },
             error: (e) => {
                 console.error('Error loading data', e.message);
+                if (mapErrorFrom) {
+                    e = mapErrorFrom(e);
+                }
                 this.error$.next(e);
             }
         });
