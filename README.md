@@ -48,15 +48,15 @@ export class NotificationService<T> {
 
     public subscribeMap(
         observer: Observable<any>,
-        mapDataFrom?: (data: any) => T,
-        mapErrorFrom?: (error: any) => any
+        mapData?: (data: any) => T,
+        mapError?: (error: any) => any
     ) {
         this.resetError();
         observer.subscribe({
             next: (data) => {
                 console.log('Data loaded successfully', data);
-                if (mapDataFrom) {
-                    var d = mapDataFrom(data);
+                if (mapData) {
+                    var d = mapData(data);
                     this.data$.next(d);
                     return;
                 }
@@ -64,8 +64,8 @@ export class NotificationService<T> {
             },
             error: (e) => {
                 console.error('Error loading data', e.message);
-                if (mapErrorFrom) {
-                    e = mapErrorFrom(e);
+                if (mapError) {
+                    e = mapError(e);
                 }
                 this.error$.next(e);
             }
