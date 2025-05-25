@@ -71,7 +71,9 @@ Then, when you call it's `subscribe` with your Observable,
 
 data & error get published to the streams.
 
-And, the local variables are updated which in turn re-renders the markup.
+So, the variables in your component are notified and updated with the latest data or error.
+
+This in turn re-renders the markup.
 
 **component.ts**
 
@@ -86,8 +88,8 @@ public error$ = this.notificationService.error$;
 getEmployeesByName(searchName: string) {
      // Fetch employees by name.
      // The employeeApiService method returns an Observable<Employee[]>.
-     // The employees$ stream will be updated with the data.
-     // The error$ stream will be updated with the error if any.
+     // The employees$ stream will be notified and updated with the data.
+     // The error$ stream will be notified and updated with the error if any.
      this.notificationService.subscribe
      (
         this.employeeApiService.getEmployeesByName(searchName)
