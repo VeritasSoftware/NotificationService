@@ -21,6 +21,32 @@ export class NotificationService<T> {
         });
     }
 
+    public subscribeMap(
+        observer: Observable<any>,
+        mapData?: (data: any) => T,
+        mapError?: (error: any) => any
+    ) {
+        this.resetError();
+        observer.subscribe({
+            next: (data) => {
+                console.log('Data loaded successfully', data);
+                if (mapData) {
+                    var d = mapData(data);
+                    this.data$.next(d);
+                    return;
+                }
+                this.data$.next(data);
+            },
+            error: (e) => {
+                console.error('Error loading data', e.message);
+                if (mapError) {
+                    e = mapError(e);
+                }
+                this.error$.next(e);
+            }
+        });
+    }
+
     public resetData() {
         this.data$.next(<T>{});
     }
